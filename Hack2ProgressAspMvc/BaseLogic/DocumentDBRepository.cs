@@ -73,7 +73,8 @@ namespace Hack2ProgressAspMvc.BaseLogic
             var results = new List<T>();
             while (query.HasMoreResults)
             {
-                results.AddRange(await query.ExecuteNextAsync<T>());
+                var queryResult = await query.ExecuteNextAsync<T>();
+                results.AddRange(queryResult);
             }
 
             return results;
@@ -85,9 +86,9 @@ namespace Hack2ProgressAspMvc.BaseLogic
             return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
         }
 
-        public static async Task<Document> UpdateItemAsync(string id, T item)
+        public static async Task<Document> UpdateItemAsync(int id, T item)
         {
-            return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), item);
+            return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()), item);
         }
 
         public static async Task<T> GetItemAsync(string id)
@@ -108,6 +109,12 @@ namespace Hack2ProgressAspMvc.BaseLogic
                     throw;
                 }
             }
+        }
+
+
+        public static async Task<Document> DeleteItemAsync(int id)
+        {
+            return await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()));
         }
     }
 }

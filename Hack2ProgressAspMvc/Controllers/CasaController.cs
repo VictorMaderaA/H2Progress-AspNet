@@ -13,12 +13,18 @@ namespace Hack2ProgressAspMvc.Controllers
     public class CasaController : Controller
     {
         // GET: Casa
+
+
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
             var items = await DocumentDbRepository<Casa>.GetItemsAsync();
             return View(items);
         }
+
+
+
+
 
         public ActionResult Create()
         {
@@ -28,10 +34,11 @@ namespace Hack2ProgressAspMvc.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(/*[Bind(Include = "Id,Name,Description,Completed")]*/ Casa item)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Habitacion")] Casa item)
         {
             if (ModelState.IsValid)
             {
+
                 await DocumentDbRepository<Casa>.CreateItemAsync(item);
                 return RedirectToAction("Index");
             }
@@ -39,17 +46,9 @@ namespace Hack2ProgressAspMvc.Controllers
             return View(item);
         }
 
+
+
         public ActionResult Edit()
-        {
-            return View();
-        }
-
-        public ActionResult Delete()
-        {
-            return View();
-        }
-
-        public ActionResult Details()
         {
             return View();
         }
@@ -57,7 +56,7 @@ namespace Hack2ProgressAspMvc.Controllers
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Name,Description,Completed")] Casa item)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Habitacion")] Casa item)
         {
             if (ModelState.IsValid)
             {
@@ -84,5 +83,32 @@ namespace Hack2ProgressAspMvc.Controllers
 
             return View(item);
         }
+
+
+
+
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(Casa model)
+        {
+            if (ModelState.IsValid)
+            {
+                await DocumentDbRepository<Casa>.DeleteItemAsync(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+
     }
 }
