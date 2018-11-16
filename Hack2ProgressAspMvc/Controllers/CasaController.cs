@@ -22,10 +22,6 @@ namespace Hack2ProgressAspMvc.Controllers
             return View(items);
         }
 
-
-
-
-
         public ActionResult Create()
         {
             return View();
@@ -39,8 +35,12 @@ namespace Hack2ProgressAspMvc.Controllers
             if (ModelState.IsValid)
             {
                 List<Casa> data = (List<Casa>)await DocumentDbRepository<Casa>.GetItemsAsync();
-                var maxId = data.Max(x => x.Id) + 1;
-                item.Id = maxId;
+                var maxId = 1;
+                if (data.Count > 0)
+                {
+                    maxId = data.Max(x => int.Parse(x.Id)) + 1;
+                }
+                item.Id = maxId.ToString();
                 await DocumentDbRepository<Casa>.CreateItemAsync(item);
                 return RedirectToAction("Index");
             }
