@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hack2ProgressAspNet", "Hack2ProgressAspNet\Hack2ProgressAspNet.csproj", "{F3B9DC1C-22A7-476D-9375-A606E4991487}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hack2ProgressAspMvc", "Hack2ProgressAspMvc\Hack2ProgressAspMvc.csproj", "{986BBF21-0FA2-414F-B9F3-97938E8FB24A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F3B9DC1C-22A7-476D-9375-A606E4991487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3B9DC1C-22A7-476D-9375-A606E4991487}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3B9DC1C-22A7-476D-9375-A606E4991487}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3B9DC1C-22A7-476D-9375-A606E4991487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{986BBF21-0FA2-414F-B9F3-97938E8FB24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986BBF21-0FA2-414F-B9F3-97938E8FB24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986BBF21-0FA2-414F-B9F3-97938E8FB24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986BBF21-0FA2-414F-B9F3-97938E8FB24A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
