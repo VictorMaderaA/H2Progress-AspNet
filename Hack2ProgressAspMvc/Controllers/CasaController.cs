@@ -34,11 +34,13 @@ namespace Hack2ProgressAspMvc.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Habitacion")] Casa item)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Habitacion")] Casa item)
         {
             if (ModelState.IsValid)
             {
-
+                List<Casa> data = (List<Casa>)await DocumentDbRepository<Casa>.GetItemsAsync();
+                var maxId = data.Max(x => x.Id) + 1;
+                item.Id = maxId;
                 await DocumentDbRepository<Casa>.CreateItemAsync(item);
                 return RedirectToAction("Index");
             }
