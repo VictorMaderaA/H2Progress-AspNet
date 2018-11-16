@@ -9,8 +9,8 @@
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "habitaciones")]
-        public Habitacion[] Habitaciones { get; set; }
+        [JsonProperty(PropertyName = "idHabitacion")]
+        public int Habitaciones { get; set; }
 
 
         /*[JsonProperty(PropertyName = "id")]

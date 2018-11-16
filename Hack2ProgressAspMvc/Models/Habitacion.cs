@@ -15,8 +15,6 @@ namespace Hack2ProgressAspMvc.Models
         [JsonProperty(PropertyName = "tomasLuz")]
         public TomaLuz[] TomasLuz { get; set; }
 
-            //[JsonProperty(PropertyName = "extras")]
-
-        }
+    }
 
 }
