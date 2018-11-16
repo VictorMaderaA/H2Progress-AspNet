@@ -11,7 +11,7 @@ using System.Net;
 
 namespace Hack2ProgressAspMvc.BaseLogic
 {
-    public static class DocumentDBRepository<T> where T : class
+    public static class DocumentDbRepository<T> where T : class
     {
         private static readonly string DatabaseId = ConfigurationManager.AppSettings["database"];
         private static readonly string CollectionId = ConfigurationManager.AppSettings["collection"];
@@ -32,7 +32,7 @@ namespace Hack2ProgressAspMvc.BaseLogic
             }
             catch (DocumentClientException e)
             {
-                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+                if (e.StatusCode == HttpStatusCode.NotFound)
                 {
                     await client.CreateDatabaseAsync(new Database { Id = DatabaseId });
                 }
