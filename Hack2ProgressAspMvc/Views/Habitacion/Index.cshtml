@@ -10,31 +10,22 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdHogar)
-        </th>
-        <th></th>
-    </tr>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdHogar)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+    <!-- @Html.DisplayNameFor(model => model.Nombre)-->
+    <!---- @Html.DisplayNameFor(model => model.IdHogar)-->
+
+
+    @foreach (var item in Model)
+    {
+        <div id="@Html.DisplayFor(modelItem => item.IdHogar)"><div id="room" draggable="true" ondragstart="drag(event)">@Html.DisplayFor(modelItem => item.Nombre)</div></div>
+        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+    }
+
+</div>
