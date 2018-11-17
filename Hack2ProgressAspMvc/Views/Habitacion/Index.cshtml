@@ -19,12 +19,15 @@
 
     @foreach (var item in Model)
     {
-        <div id="@Html.DisplayFor(modelItem => item.IdHogar)"><div id="room" draggable="true" ondragstart="drag(event)">@Html.DisplayFor(modelItem => item.Nombre)</div></div>
+        <div id="@Html.DisplayFor(modelItem => item.IdHogar)"><div id="room" draggable="true" ondragstart="drag(event)">
+    @Html.DisplayFor(modelItem => item.Nombre)
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </div></div>
         <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        
 
     }
 
