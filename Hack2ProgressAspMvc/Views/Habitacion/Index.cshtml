@@ -10,65 +10,98 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@{
+    LiteralControl texto = new LiteralControl();
+    string rows = "";
+    int k = 1;
+    string divStart = @"<div class='grid" + k + "'>";
+    rows += divStart;
+    int anterior = Model.ElementAt(0).IdHogar;
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Hogar</th>
-            <th scope="col">Editar</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var item in Model)
+    foreach (var item in Model)
+    {
+        if (item.IdHogar == anterior)
         {
+            rows += @"
+            <div class='room'>
+                <div class='item-content'>
 
-        <tr>
+                    <h1>Nombre: <h3>" + item.Nombre + "</h3></h1></div></div>";
 
-            <td scope="row">@item.Id</td>
-            <th scope="row">@item.Nombre</th>
-            <td>@item.IdHogar</td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-
-        </tr>
+        }
+        else
+        {
+            int a = k + 1;
+            rows+= "</div><script>var grid"+k+ " = new Muuri('.grid" + k + "', { dragEnabled: true });</script>  <div class='grid" + a + "'>";
+            k++;
         }
 
-    </tbody>
-</table>
-
-
-@*<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-
-    <!-- @Html.DisplayNameFor(model => model.Nombre)-->
-    <!---- @Html.DisplayNameFor(model => model.IdHogar)-->
-
-
-    @foreach (var item in Model)
-    {
-<div id="@Html.DisplayFor(modelItem => item.IdHogar)">
-
-    <div id="room" draggable="true" ondragstart="drag(event)">
-        </div>
-
-    @Html.DisplayFor(modelItem => item.Nombre)
-    @Html.DisplayFor(modelItem => item.IdHogar)
-
-    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-</div>
-        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-        
-
+        anterior = item.IdHogar;
     }
+    string divEnd = @"</div></div>";
+    rows += divEnd;
+    this.WriteLiteral(rows);
+}
 
-</div>*@
+
+        <!--<table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Hogar</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+
+                        <th scope="row">@item.Nombre</th>
+                        <td>@item.IdHogar</td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+        @*<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+
+            <!-- @Html.DisplayNameFor(model => model.Nombre)-->
+            <!---- @Html.DisplayNameFor(model => model.IdHogar)-->
+
+
+            @foreach (var item in Model)
+            {
+        <div id="@Html.DisplayFor(modelItem => item.IdHogar)">
+
+            <div id="room" draggable="true" ondragstart="drag(event)">
+                </div>
+
+            @Html.DisplayFor(modelItem => item.Nombre)
+            @Html.DisplayFor(modelItem => item.IdHogar)
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </div>
+                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+
+
+            }
+
+        </div>-->
+            *@-->
+

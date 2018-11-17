@@ -1,6 +1,5 @@
 #div1 {
-    width: 350px;
-    height: 70px;
+  
     padding-right: 2px;
     padding-bottom: 2px;
     border: 1px solid #aaaaaa;
@@ -42,4 +41,131 @@
     border-bottom-left-radius: 4px;
     width: 350px;
     height: 70px;
+}
+.header {
+    height: 200px;
+    background: #000000;
+}
+
+.grid1 {
+    position: relative;
+    background: #ccff90;
+}
+.grid2 {
+    position: relative;
+    background: #ccff90;
+}
+.grid3 {
+    position: relative;
+    background: #ccff90;
+}
+.grid4 {
+    position: relative;
+    background: #ccff90;
+}
+.grid5 {
+    position: relative;
+    background: #ccff90;
+}
+.grid6 {
+    position: relative;
+    background: #ccff90;
+}
+.grid7 {
+    position: relative;
+    background: #ccff90;
+}
+.grid8 {
+    position: relative;
+    background: #ccff90;
+}
+.grid9 {
+    position: relative;
+    background: #ccff90;
+}
+.grid10 {
+    position: relative;
+    background: #ccff90;
+}
+.grid11 {
+    position: relative;
+    background: #ccff90;
+}
+.grid12 {
+    position: relative;
+    background: #ccff90;
+}
+.grid13 {
+    position: relative;
+    background: #ccff90;
+}
+
+.room {
+    width: 200px;
+    height: 200px;
+    display: block;
+    position: absolute;
+    margin: 5px;
+    z-index: 1;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 300;
+    color: #000000;
+    border: 2px solid;
+    border-top-color: initial;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-right-color: initial;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-bottom-color: initial;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left-color: initial;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.small {
+    width: 200px;
+    height: 200px;
+}
+
+.medium {
+    width: 300px;
+    height: 300px;
+}
+
+.big {
+    width: 400px;
+    height: 400px;
+}
+
+.item.muuri-item-dragging {
+    z-index: 3;
+}
+
+.item.muuri-item-releasing {
+    z-index: 2;
+}
+
+.item.muuri-item-hidden {
+    z-index: 0;
+}
+
+.item-content {
+    background: #ffffff;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
