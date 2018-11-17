@@ -1,4 +1,4 @@
-namespace Hack2ProgressAspMvc.Models
+namespace Hack2ProgressAspMvc.Models.temp
 {
     public class Pair
     {

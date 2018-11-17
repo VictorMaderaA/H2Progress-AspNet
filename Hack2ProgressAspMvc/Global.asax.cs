@@ -18,6 +18,7 @@ namespace Hack2ProgressAspMvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DocumentDbRepository<Hack2ProgressAspMvc.Models.Casa>.Initialize();
+            DocumentDbRepository<Hack2ProgressAspMvc.Models.Hogar>.Initialize();
         }
     }
 }

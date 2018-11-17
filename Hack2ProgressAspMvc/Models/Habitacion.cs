@@ -1,20 +1,23 @@
-namespace Hack2ProgressAspMvc.Models
+﻿namespace Hack2ProgressAspMvc.Models
 {
-    using Microsoft.Azure.Documents;
-    using Newtonsoft.Json;
-    
     public class Habitacion
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public TipoHabitacionEnum Tipo { get; set; }
+        public TomaEnergia[] TomasEnergia { get; set; }
 
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
-        [JsonProperty(PropertyName = "electrodomesticos")]
-        public Electrodomestico[] Electrodomesticos { get; set; }
-
-        [JsonProperty(PropertyName = "tomasLuz")]
-        public TomaLuz[] TomasLuz { get; set; }
 
     }
 
+    public enum TipoHabitacionEnum
+    {
+        Baño,
+        Cocina,
+        Salon,
+        Habitacion,
+        SalonExterior,
+        Otros
+
+    }
 }

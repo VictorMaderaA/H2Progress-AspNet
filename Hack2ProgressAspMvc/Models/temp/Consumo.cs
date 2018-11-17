@@ -1,10 +1,8 @@
 using System;
+using Newtonsoft.Json;
 
-namespace Hack2ProgressAspMvc.Models
+namespace Hack2ProgressAspMvc.Models.temp
 {
-    using Microsoft.Azure.Documents;
-    using Newtonsoft.Json;
-    
     public class Consumo
     {
 

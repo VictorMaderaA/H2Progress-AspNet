@@ -1,8 +1,7 @@
-namespace Hack2ProgressAspMvc.Models
+using Newtonsoft.Json;
+
+namespace Hack2ProgressAspMvc.Models.temp
 {
-    using Microsoft.Azure.Documents;
-    using Newtonsoft.Json;
-    
     public class Electrodomestico
     {
 
