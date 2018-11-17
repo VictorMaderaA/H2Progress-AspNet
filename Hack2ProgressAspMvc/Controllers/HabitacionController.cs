@@ -19,12 +19,13 @@ namespace Hack2ProgressAspMvc.Controllers
             };
             var items = SqlConnector.Instance.GetTable(cmd, out var r);
             List<Habitacion> habitaciones = new List<Habitacion>();
-            foreach (DataRow item in items.Rows)
+            foreach (DataRow i in items.Rows)
             {
                 var hogar = new Habitacion()
                 {
-                    Id = int.Parse(item[0].ToString()),
-                    Nombre = item[1].ToString()
+                    Id = int.Parse(i[0].ToString()),
+                    Nombre = i[1].ToString(),
+                    IdHogar = int.Parse(i[2].ToString())
                 };
                 habitaciones.Add(hogar);
             }
@@ -60,6 +61,25 @@ namespace Hack2ProgressAspMvc.Controllers
         // GET: Habitacion/Create
         public ActionResult Create()
         {
+            var cmd = new MySqlCommand
+            {
+                CommandText = "SELECT * FROM hogares"
+            };
+            var hogaresI = SqlConnector.Instance.GetTable(cmd, out var r);
+            List<Hogar> hogares = new List<Hogar>();
+            foreach (DataRow item in hogaresI.Rows)
+            {
+                var hogar = new Hogar()
+                {
+                    Id = int.Parse(item[0].ToString()),
+                    Nombre = item[1].ToString()
+                };
+                hogares.Add(hogar);
+            }
+
+            //var hogaresNombreList = hogares.Select(person => person.Nombre).ToList();
+            var hogaresNombreList = hogares;
+            ViewData["HogaresNombre"]= hogaresNombreList;
             return View();
         }
 

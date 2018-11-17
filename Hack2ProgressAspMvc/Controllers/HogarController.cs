@@ -23,7 +23,8 @@ namespace Hack2ProgressAspMvc.Controllers
             {
                 var hogar = new Hogar()
                 {
-                    Id = int.Parse(item[0].ToString())
+                    Id = int.Parse(item[0].ToString()),
+                    Nombre = item[1].ToString()
                 };
                 hogares.Add(hogar);
             }
@@ -58,6 +59,7 @@ namespace Hack2ProgressAspMvc.Controllers
         // GET: Hogar/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

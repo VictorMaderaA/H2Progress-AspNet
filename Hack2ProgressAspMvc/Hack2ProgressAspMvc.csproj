@@ -173,6 +173,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConsumoController.cs" />
     <Compile Include="Controllers\HabitacionController.cs" />
     <Compile Include="Controllers\HogarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Consumo.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hogar.cs" />
     <Compile Include="Models\TomaEnergia.cs" />
@@ -275,6 +277,11 @@
     <Content Include="Views\TomaEnergia\Delete.cshtml" />
     <Content Include="Views\TomaEnergia\Details.cshtml" />
     <Content Include="Views\TomaEnergia\Edit.cshtml" />
+    <Content Include="Views\Consumo\Index.cshtml" />
+    <Content Include="Views\Consumo\Create.cshtml" />
+    <Content Include="Views\Consumo\Delete.cshtml" />
+    <Content Include="Views\Consumo\Details.cshtml" />
+    <Content Include="Views\Consumo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
