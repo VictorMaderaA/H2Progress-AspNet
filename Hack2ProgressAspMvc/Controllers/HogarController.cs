@@ -15,8 +15,7 @@ namespace Hack2ProgressAspMvc.Controllers
     public class HogarController : Controller
     {
         // GET: Hogar
-        [ActionName("Index")]
-        public async Task<ActionResult> IndexAsync()
+        public ActionResult Index()
         {
             var cmd = new MySqlCommand
             {
@@ -38,7 +37,7 @@ namespace Hack2ProgressAspMvc.Controllers
 
         // GET: Hogar/Details/5
         [ActionName("Details")]
-        public async Task<ActionResult> DetailsAsync(int id)
+        public ActionResult Details(int id)
         {
             var cmd = new MySqlCommand
             {
@@ -100,7 +99,7 @@ namespace Hack2ProgressAspMvc.Controllers
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(Hogar item)
+        public ActionResult Edit(Hogar item)
         {
             try
             {
@@ -134,7 +133,7 @@ namespace Hack2ProgressAspMvc.Controllers
         // POST: Hogar/Delete/5
         [HttpPost]
         [ActionName("Delete")]
-        public async Task<ActionResult> DeleteAsync(int id, Hogar model)
+        public ActionResult Delete(int id, Hogar model)
         {
             try
             {
@@ -156,12 +155,6 @@ namespace Hack2ProgressAspMvc.Controllers
             {
                 return View();
             }
-        }
-
-        public async Task<List<Hogar>> GetListHogaresAsync()
-        {
-            var items = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
-            return items;
         }
     }
 }
