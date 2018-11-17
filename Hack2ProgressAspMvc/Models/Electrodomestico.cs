@@ -2,21 +2,9 @@
 {
     public class Electrodomestico
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
-        public TipoElectrodomesticoEnum Tipo { get; set; }
-        public string Descripcion { get; set; }
-
-    }
-
-    public enum TipoElectrodomesticoEnum
-    {
-        Refrigerador,
-        Lavavajillas,
-        Lavadoras,
-        Secadoras,
-        Lampara,
-        Horno,
-        Aire,
-        Extra
+        public int IdToma { get; set; }
+        public int Consumo { get; set; }
     }
 }

@@ -21,12 +21,9 @@ namespace Hack2ProgressAspMvc.Controllers
             var hogares = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
             try
             {
-                var hogar = hogares.First(x => x.Id == idHogar.ToString());
+                var hogar = hogares.First(x => x.Id == idHogar);
                
-                if(hogar.Habitaciones != null)
-                    return Content(hogar.Habitaciones[0]);
-                return Content("{}");
-                //return View(items);
+                return View();
             }
             catch (Exception e)
             {
@@ -59,31 +56,21 @@ namespace Hack2ProgressAspMvc.Controllers
             try
             {
                 var hogares = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
-                var hogar = hogares.First(x => x.Id == idHogar.ToString());
+                var hogar = hogares.First(x => x.Id == idHogar);
 
-                var strBuilder = new StringBuilder();
-                var listHabitaciones = new List<Habitacion>();
-                if (hogar.Habitaciones != null)
-                    foreach (var habitacion in hogar.Habitaciones)
-                    {
-                        var deserializedProduct = JsonConvert.DeserializeObject<Habitacion>(habitacion);
-                        listHabitaciones.Add(deserializedProduct);
-                    }
 
-                string output = JsonConvert.SerializeObject(listHabitaciones);
-
-                if (ModelState.IsValid)
-                {
-                    var data = (List<Habitacion>)await DocumentDbRepository<Habitacion>.GetItemsAsync();
-                    var maxId = 1;
-                    if (data.Count > 0)
-                    {
-                        maxId = data.Max(x => int.Parse(x.Id)) + 1;
-                    }
-                    collection.Id = maxId.ToString();
-                    await DocumentDbRepository<Habitacion>.CreateItemAsync(collection);
-                    return RedirectToAction("Index");
-                }
+                //if (ModelState.IsValid)
+                //{
+                //    var data = (List<Habitacion>)await DocumentDbRepository<Habitacion>.GetItemsAsync();
+                //    var maxId = 1;
+                //    if (data.Count > 0)
+                //    {
+                //        maxId = data.Max(x => int.Parse(x.Id)) + 1;
+                //    }
+                //    collection.Id = maxId.ToString();
+                //    await DocumentDbRepository<Habitacion>.CreateItemAsync(collection);
+                //    return RedirectToAction("Index");
+                //}
 
                 return View();
             }
@@ -148,27 +135,5 @@ namespace Hack2ProgressAspMvc.Controllers
                 return View();
             }
         }
-
-        [HttpGet]
-        [ActionName("GetHabitacionesFromHogarId")]
-        public async Task<ActionResult> GetHabitacionesFromHogarIdAsync(object id)
-        {
-            var data = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
-            if (data.Exists(x => x.Id == id.ToString()))
-            {
-                var hogar = data.First(x => x.Id == id.ToString());
-                var strBuilder = new StringBuilder();
-                if(hogar.Habitaciones == null) return Content("{}");
-                foreach (var habitacion in hogar.Habitaciones)
-                {
-                    strBuilder.Append(habitacion);
-                }
-
-                return Content(strBuilder.ToString());
-            }
-
-            return Content("{}");
-        }
-
     }
 }

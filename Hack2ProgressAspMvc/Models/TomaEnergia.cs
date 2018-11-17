@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public PosicionEnum Posicion { get; set; }
-        public Electrodomestico Electrodomestico { get; set; }
 
+        public int IdHabitacion { get; set; }
     }
 
     public enum PosicionEnum

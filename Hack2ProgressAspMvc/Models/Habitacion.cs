@@ -13,20 +13,27 @@ namespace Hack2ProgressAspMvc.Models
         [JsonProperty(PropertyName = "tipo")]
         public TipoHabitacionEnum Tipo { get; set; }
 
-        [JsonProperty(PropertyName = "tomasEnergia")]
-        public string TomasEnergia { get; set; }
 
+        public TipoHabitacionEnum Tamaño { get; set; }
 
+        public int IdHogar { get; set; }
     }
 
     public enum TipoHabitacionEnum
     {
-        Baño,
+        Bathroom,
         Cocina,
-        Salon,
+        Salón,
         Habitacion,
-        SalonExterior,
+        SalónExterior,
         Otros
 
+    }
+
+    public enum TamañoHabitacion
+    {
+        Small,
+        medium,
+        Large
     }
 }
