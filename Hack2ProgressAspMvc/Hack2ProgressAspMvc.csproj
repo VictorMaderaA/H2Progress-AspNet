@@ -203,6 +203,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\consumoHogar.png" />
+    <Content Include="Images\enerbox1.PNG" />
+    <Content Include="Images\enerbox3.PNG" />
+    <Content Include="Images\graficaMensual.png" />
+    <Content Include="Images\mapaHogar.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
