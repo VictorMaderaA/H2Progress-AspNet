@@ -86,7 +86,7 @@ namespace Hack2ProgressAspMvc.BaseLogic
             return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
         }
 
-        public static async Task<Document> UpdateItemAsync(int id, T item)
+        public static async Task<Document> UpdateItemAsync(string id, T item)
         {
             return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()), item);
         }
@@ -112,7 +112,7 @@ namespace Hack2ProgressAspMvc.BaseLogic
         }
 
 
-        public static async Task<Document> DeleteItemAsync(int id)
+        public static async Task<Document> DeleteItemAsync(string id)
         {
             return await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()));
         }
