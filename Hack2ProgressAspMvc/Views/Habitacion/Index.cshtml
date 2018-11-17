@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Hack2ProgressAspMvc.Models.Habitacion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Registro Habitaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Registro Habitaciones</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,6 +14,7 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
+            <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Hogar</th>
             <th scope="col">Editar</th>
@@ -24,18 +25,19 @@
         @foreach (var item in Model)
         {
 
-            <tr>
+        <tr>
 
-                <th scope="row">@item.Nombre</th>
-                <td>@item.IdHogar</td>
+            <td scope="row">@item.Id</td>
+            <th scope="row">@item.Nombre</th>
+            <td>@item.IdHogar</td>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
 
-            </tr>
+        </tr>
         }
 
     </tbody>

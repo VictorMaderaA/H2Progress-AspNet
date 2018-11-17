@@ -1,34 +1,37 @@
 ﻿@model IEnumerable<Hack2ProgressAspMvc.Models.TomaEnergia>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Registros Tomas de Energia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Registros Tomas de Energia</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdHabitacion)
-        </th>
-        <th></th>
-    </tr>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdHabitacion)</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdHabitacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@Html.DisplayFor(model => item.Id)</th>
+            <th scope="row">@Html.DisplayFor(model => item.IdHabitacion)</th>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
 
+    </tbody>
 </table>
