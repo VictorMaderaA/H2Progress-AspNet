@@ -1,62 +1,45 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fcfaf9;
-  }
-  
-  .grid {
-    position: relative;
-  }
-  
-  .tomas {
+#div1 {
+    width: 350px;
+    height: 70px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    border: 1px solid #aaaaaa;
+}
+#div2 {
+    width: 350px;
+    height: 70px;
+}
+#room{
     display: block;
-    position: absolute;
-    height: 200px;
-    width: 200px;
-    line-height: 200px;
-    margin: 5px;
-    text-align: center;
+    position: absolute; 
     z-index: 1;
-    
-  }
-  .habitacion {
-    display: block;
-    position: absolute;
-    height: 200px;
-    width: 200px;
-    line-height: 200px;
-    margin: 5px;
-    text-align: center;
-    z-index: 1;
-  }
-  
-  .item.muuri-item-dragging {
-    z-index: 3;
-  }
-  
-  .item.muuri-item-releasing {
-    z-index: 2;
-  }
-  
-  .item.muuri-item-hidden {
-    z-index: 0;
-  }
-  
-  .item-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    color: #fff;
-    background: #59687d;
-    font-size: 40px;
-    text-align: center;
-  }
-  
-  .item.muuri-item-dragging .item-content {
-    background: #8993a2;
-  }
-  
-  .item.muuri-item-releasing .item-content {
-    background: #152c43;
-  }
-  
+    background: transparent;
+    font-size: 20px;
+    font-weight: 300;
+    color: #000000;
+    border: 2px solid;
+    border-top-color: initial;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-right-color: initial;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-bottom-color: initial;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left-color: initial;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 350px;
+    height: 70px;
+}
