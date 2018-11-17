@@ -1,16 +1,10 @@
-﻿using System;
+﻿using Hack2ProgressAspMvc.Models;
+using Library.MySQL;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using Hack2ProgressAspMvc.BaseLogic;
-using Hack2ProgressAspMvc.Models;
-using Library.MySQL;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
 
 namespace Hack2ProgressAspMvc.Controllers
 {
@@ -25,11 +19,13 @@ namespace Hack2ProgressAspMvc.Controllers
             };
             var items = SqlConnector.Instance.GetTable(cmd, out var r);
             List<Habitacion> habitaciones = new List<Habitacion>();
-            foreach (DataRow item in items.Rows)
+            foreach (DataRow i in items.Rows)
             {
                 var hogar = new Habitacion()
                 {
-                    Id = int.Parse(item[0].ToString())
+                    Id = int.Parse(i[0].ToString()),
+                    Nombre = i[1].ToString(),
+                    IdHogar = int.Parse(i[2].ToString())
                 };
                 habitaciones.Add(hogar);
             }
@@ -52,7 +48,8 @@ namespace Hack2ProgressAspMvc.Controllers
             {
                 var hogar = new Habitacion()
                 {
-                    Id = int.Parse(i[0].ToString())
+                    Id = int.Parse(i[0].ToString()),
+                    Nombre = i[1].ToString()
                 };
                 habitaciones.Add(hogar);
             }
@@ -64,6 +61,25 @@ namespace Hack2ProgressAspMvc.Controllers
         // GET: Habitacion/Create
         public ActionResult Create()
         {
+            var cmd = new MySqlCommand
+            {
+                CommandText = "SELECT * FROM hogares"
+            };
+            var hogaresI = SqlConnector.Instance.GetTable(cmd, out var r);
+            List<Hogar> hogares = new List<Hogar>();
+            foreach (DataRow item in hogaresI.Rows)
+            {
+                var hogar = new Hogar()
+                {
+                    Id = int.Parse(item[0].ToString()),
+                    Nombre = item[1].ToString()
+                };
+                hogares.Add(hogar);
+            }
+
+            //var hogaresNombreList = hogares.Select(person => person.Nombre).ToList();
+            var hogaresNombreList = hogares;
+            ViewData["HogaresNombre"]= hogaresNombreList;
             return View();
         }
 
@@ -77,11 +93,9 @@ namespace Hack2ProgressAspMvc.Controllers
                 {
                     var cmd = new MySqlCommand
                     {
-                        CommandText = "INSERT INTO `habitaciones` (`id`, `nombre`, `tipo`, `tamanio`, `id_hogar`) VALUES (NULL, @nombre, @Tipo, @Tamaño, @IdHogar)"
+                        CommandText = "INSERT INTO `habitaciones` (`id`, `nombre`, `id_hogar`) VALUES (NULL, @nombre, @IdHogar)"
                     };
                     cmd.Parameters.Add("@nombre", collection.Nombre);
-                    cmd.Parameters.Add("@Tipo", collection.Tipo.ToString());
-                    cmd.Parameters.Add("@Tamaño", collection.Tamaño.ToString());
                     cmd.Parameters.Add("@IdHogar", collection.IdHogar);
 
                     SqlConnector.Instance.ExecuteQuery(cmd, out var r);
@@ -113,12 +127,10 @@ namespace Hack2ProgressAspMvc.Controllers
                     var cmd = new MySqlCommand
                     {
                         CommandText = "Update habitaciones set id = @id, nombre = @nombre," +
-                                      " tipo= @Tipo, tamanio = @Tamaño, id_hogar = @IdHogar   where id = @id"
+                                      " id_hogar = @IdHogar   where id = @id"
                     };
                     cmd.Parameters.Add("@id", item.Id);
                     cmd.Parameters.Add("@nombre", item.Nombre);
-                    cmd.Parameters.Add("@Tipo", item.Tipo);
-                    cmd.Parameters.Add("@Tamaño", item.Tamaño);
                     cmd.Parameters.Add("@IdHogar", item.IdHogar);
 
                     SqlConnector.Instance.ExecuteQuery(cmd, out var r);

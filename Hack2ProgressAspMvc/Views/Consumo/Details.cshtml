@@ -1,0 +1,43 @@
+﻿@model Hack2ProgressAspMvc.Models.Consumo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Consumo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdToma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdToma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumoEnergetico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumoEnergetico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
