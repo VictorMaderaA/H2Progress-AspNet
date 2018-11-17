@@ -51,7 +51,7 @@ namespace Hack2ProgressAspMvc.BaseLogic
             }
             catch (DocumentClientException e)
             {
-                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+                if (e.StatusCode == HttpStatusCode.NotFound)
                 {
                     await client.CreateDocumentCollectionAsync(
                         UriFactory.CreateDatabaseUri(DatabaseId),
@@ -65,25 +65,56 @@ namespace Hack2ProgressAspMvc.BaseLogic
             }
         }
 
-
-
-
-
-
-        public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
+        public static async Task<IEnumerable<T>> GetItemsAsync()
         {
-            IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
-                    UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId))
-                .Where(predicate)
+            var query = client.CreateDocumentQuery<T>(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId))
                 .AsDocumentQuery();
 
-            List<T> results = new List<T>();
+            var results = new List<T>();
             while (query.HasMoreResults)
             {
-                results.AddRange(await query.ExecuteNextAsync<T>());
+                var queryResult = await query.ExecuteNextAsync<T>();
+                results.AddRange(queryResult);
             }
 
             return results;
+        }
+
+
+        public static async Task<Document> CreateItemAsync(T item)
+        {
+            return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
+        }
+
+        public static async Task<Document> UpdateItemAsync(string id, T item)
+        {
+            return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()), item);
+        }
+
+        public static async Task<T> GetItemAsync(string id)
+        {
+            try
+            {
+                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+                return (T)(dynamic)document;
+            }
+            catch (DocumentClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+
+        public static async Task<Document> DeleteItemAsync(string id)
+        {
+            return await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id.ToString()));
         }
     }
 }

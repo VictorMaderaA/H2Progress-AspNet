@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Hack2ProgressAspMvc.Models.Casa>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Habitaciones</th>
+        <th scope="col">Editar</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <th scope="row">@item.Id</th>
+            <td>@item.Habitacion</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+                
+        </tr>
+    }
+
+    </tbody>
+</table>
