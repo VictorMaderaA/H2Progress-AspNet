@@ -1,11 +1,20 @@
-﻿namespace Hack2ProgressAspMvc.Models
+﻿using Newtonsoft.Json;
+
+namespace Hack2ProgressAspMvc.Models
 {
     public class Habitacion
     {
-        public int Id { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "nombre")]
         public string Nombre { get; set; }
+
+        [JsonProperty(PropertyName = "tipo")]
         public TipoHabitacionEnum Tipo { get; set; }
-        public TomaEnergia[] TomasEnergia { get; set; }
+
+        [JsonProperty(PropertyName = "tomasEnergia")]
+        public string TomasEnergia { get; set; }
 
 
     }

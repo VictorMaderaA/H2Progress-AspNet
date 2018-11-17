@@ -20,9 +20,12 @@ namespace Hack2ProgressAspMvc.Controllers
         }
 
         // GET: Hogar/Details/5
-        public ActionResult Details(int id)
+        [ActionName("Details")]
+        public async Task<ActionResult> DetailsAsync(string id)
         {
-            return View();
+            var items = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
+            var item = items.First(x => x.Id == id);
+            return View(item);
         }
 
         // GET: Hogar/Create
@@ -44,17 +47,18 @@ namespace Hack2ProgressAspMvc.Controllers
                     var maxId = 1;
                     if (data.Count > 0)
                     {
-                        maxId = data.Max(x => x.Id) + 1;
+                        maxId = data.Max(x => int.Parse(x.Id)) + 1;
                     }
-                    collection.Id = maxId;
+                    collection.Id = maxId.ToString();
                     await DocumentDbRepository<Hogar>.CreateItemAsync(collection);
                     return RedirectToAction("Index");
                 }
 
                 return View();
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return View();
             }
         }
@@ -66,18 +70,25 @@ namespace Hack2ProgressAspMvc.Controllers
         }
 
         // POST: Hogar/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditAsync(Hogar item)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    await DocumentDbRepository<Hogar>.UpdateItemAsync(item.Id, item);
+                    return RedirectToAction("Index");
+                }
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(item);
             }
         }
 
@@ -89,18 +100,28 @@ namespace Hack2ProgressAspMvc.Controllers
 
         // POST: Hogar/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteAsync(int id, Hogar model)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    await DocumentDbRepository<Hogar>.DeleteItemAsync(model.Id);
+                    return RedirectToAction("Index");
+                }
+                return View(model);
             }
             catch
             {
                 return View();
             }
+        }
+
+        public async Task<List<Hogar>> GetListHogaresAsync()
+        {
+            var items = (List<Hogar>)await DocumentDbRepository<Hogar>.GetItemsAsync();
+            return items;
         }
     }
 }

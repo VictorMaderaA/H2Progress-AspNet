@@ -34,7 +34,7 @@ namespace Hack2ProgressAspMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                List<Casa> data = (List<Casa>)await DocumentDbRepository<Casa>.GetItemsAsync();
+                var data = (List<Casa>)await DocumentDbRepository<Casa>.GetItemsAsync();
                 var maxId = 1;
                 if (data.Count > 0)
                 {

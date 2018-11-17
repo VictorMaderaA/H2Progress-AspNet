@@ -1,4 +1,5 @@
-﻿using Hack2ProgressAspMvc.Models.temp;
+﻿using System.ComponentModel.DataAnnotations;
+using Hack2ProgressAspMvc.Models.temp;
 
 namespace Hack2ProgressAspMvc.Models
 {
