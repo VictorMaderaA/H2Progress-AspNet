@@ -1,14 +1,10 @@
-﻿using System;
+﻿using Hack2ProgressAspMvc.Models;
+using Library.MySQL;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using Hack2ProgressAspMvc.BaseLogic;
-using Hack2ProgressAspMvc.Models;
-using Library.MySQL;
-using MySql.Data.MySqlClient;
 
 namespace Hack2ProgressAspMvc.Controllers
 {

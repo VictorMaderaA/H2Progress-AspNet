@@ -1,71 +1,71 @@
-﻿using Hack2ProgressAspMvc.Models;
-using Library.MySQL;
-using MySql.Data.MySqlClient;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Hack2ProgressAspMvc.Models;
+using Library.MySQL;
+using MySql.Data.MySqlClient;
 
 namespace Hack2ProgressAspMvc.Controllers
 {
-    public class HabitacionController : Controller
+    public class TomaEnergiaController : Controller
     {
-        // GET: Habitacion
+        // GET: TomaEnergia
         public ActionResult Index()
         {
             var cmd = new MySqlCommand
             {
-                CommandText = "SELECT * FROM habitaciones"
+                CommandText = "SELECT * FROM tomas"
             };
             var items = SqlConnector.Instance.GetTable(cmd, out var r);
-            List<Habitacion> habitaciones = new List<Habitacion>();
+            List<TomaEnergia> tomas = new List<TomaEnergia>();
             foreach (DataRow item in items.Rows)
             {
-                var hogar = new Habitacion()
+                var hogar = new TomaEnergia()
                 {
-                    Id = int.Parse(item[0].ToString()),
-                    Nombre = item[1].ToString()
+                    Id = int.Parse(item[0].ToString())
                 };
-                habitaciones.Add(hogar);
+                tomas.Add(hogar);
             }
 
-            return View(habitaciones);
+            return View(tomas);
         }
 
-        // GET: Habitacion/Details/5
+        // GET: TomaEnergia/Details/5
         [ActionName("Details")]
         public ActionResult Details(int id)
         {
             var cmd = new MySqlCommand
             {
-                CommandText = "SELECT * FROM habitaciones WHERE id = @id"
+                CommandText = "SELECT * FROM tomas WHERE id = @id"
             };
             cmd.Parameters.Add("@id", id);
             var items = SqlConnector.Instance.GetTable(cmd, out var r);
-            List<Habitacion> habitaciones = new List<Habitacion>();
+            List<TomaEnergia> tomas = new List<TomaEnergia>();
             foreach (DataRow i in items.Rows)
             {
-                var hogar = new Habitacion()
+                var hogar = new TomaEnergia()
                 {
-                    Id = int.Parse(i[0].ToString()),
-                    Nombre = i[1].ToString()
+                    Id = int.Parse(i[0].ToString())
                 };
-                habitaciones.Add(hogar);
+                tomas.Add(hogar);
             }
 
-            var item = habitaciones.First(x => x.Id == id);
+            var item = tomas.First(x => x.Id == id);
             return View(item);
         }
 
-        // GET: Habitacion/Create
+        // GET: TomaEnergia/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Habitacion/Create
+        // POST: TomaEnergia/Create
         [HttpPost]
-        public ActionResult Create(Habitacion collection)
+        public ActionResult Create(TomaEnergia collection)
         {
             if (ModelState.IsValid)
             {
@@ -73,10 +73,9 @@ namespace Hack2ProgressAspMvc.Controllers
                 {
                     var cmd = new MySqlCommand
                     {
-                        CommandText = "INSERT INTO `habitaciones` (`id`, `nombre`, `id_hogar`) VALUES (NULL, @nombre, @IdHogar)"
+                        CommandText = "INSERT INTO `tomasenergia` (`id`, `id_habitacion`) VALUES (NULL, @IdHabitacion)"
                     };
-                    cmd.Parameters.Add("@nombre", collection.Nombre);
-                    cmd.Parameters.Add("@IdHogar", collection.IdHogar);
+                    cmd.Parameters.Add("@IdHabitacion", collection.IdHabitacion);
 
                     SqlConnector.Instance.ExecuteQuery(cmd, out var r);
 
@@ -87,18 +86,18 @@ namespace Hack2ProgressAspMvc.Controllers
             return View();
         }
 
-        // GET: Habitacion/Edit/5
+        // GET: TomaEnergia/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Habitacion/Edit/5
+        // POST: TomaEnergia/Edit/5
 
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Habitacion item)
+        public ActionResult Edit(TomaEnergia item)
         {
             try
             {
@@ -106,12 +105,11 @@ namespace Hack2ProgressAspMvc.Controllers
                 {
                     var cmd = new MySqlCommand
                     {
-                        CommandText = "Update habitaciones set id = @id, nombre = @nombre," +
-                                      " id_hogar = @IdHogar   where id = @id"
+                        CommandText = "Update tomasenergia set id = @id, id_habitacion = @IdHabitacion," +
+                                      " where id = @id"
                     };
                     cmd.Parameters.Add("@id", item.Id);
-                    cmd.Parameters.Add("@nombre", item.Nombre);
-                    cmd.Parameters.Add("@IdHogar", item.IdHogar);
+                    cmd.Parameters.Add("@IdHabitacion", item.IdHabitacion);
 
                     SqlConnector.Instance.ExecuteQuery(cmd, out var r);
                     return RedirectToAction("Index");
@@ -125,16 +123,16 @@ namespace Hack2ProgressAspMvc.Controllers
             }
         }
 
-        // GET: Habitacion/Delete/5
+        // GET: TomaEnergia/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Habitacion/Delete/5
+        // POST: TomaEnergia/Delete/5
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult Delete(int id, Habitacion model)
+        public ActionResult Delete(int id, TomaEnergia model)
         {
             try
             {
@@ -142,7 +140,7 @@ namespace Hack2ProgressAspMvc.Controllers
                 {
                     var cmd = new MySqlCommand
                     {
-                        CommandText = "DELETE FROM habitaciones WHERE id = @id"
+                        CommandText = "DELETE FROM tomas WHERE id = @id"
                     };
                     cmd.Parameters.Add("@id", model.Id);
 
