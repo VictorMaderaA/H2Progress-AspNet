@@ -2,46 +2,41 @@
 @model IEnumerable<Hack2ProgressAspMvc.Models.Consumo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consumo energético por toma";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Consumo energético por toma</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdToma)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ConsumoEnergetico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th></th>
-    </tr>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdToma)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ConsumoEnergetico)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Fecha)</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdToma)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConsumoEnergetico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td scope="row">@Html.DisplayFor(model => item.Id)</td>
+            <td scope="row">@Html.DisplayFor(model => item.IdToma)</td>
+            <td scope="row">@Html.DisplayFor(model => item.ConsumoEnergetico)</td>
+            <td scope="row">@Html.DisplayFor(model => item.Fecha)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
+    </tbody>
 </table>

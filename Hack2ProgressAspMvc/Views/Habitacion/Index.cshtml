@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Hack2ProgressAspMvc.Models.Habitacion>
 
 @{
-                /**/
-
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewBag.Title = "Registro Habitaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Registro Habitaciones</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -39,15 +36,12 @@
             k++;
         }
 
-
         anterior = item.IdHogar;
     }
     string divEnd = @"</div></div>";
     rows += divEnd;
     this.WriteLiteral(rows);
 }
-
-
 
 
         <!--<table class="table">

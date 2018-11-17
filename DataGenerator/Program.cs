@@ -91,7 +91,7 @@ namespace DataGenerator
                         Fecha = Date,
                         IdToma = i
                     };
-                    Date.AddDays(1);
+                    Date = Date.AddDays(1);
                     new ConsumoController().Create(h);
 
                 }
